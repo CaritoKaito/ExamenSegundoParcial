@@ -14,12 +14,11 @@
     <nav class = "navbar navbar-expand-lg navbar-dar" style="background-color: #2b3d89">
         <div class="container-fluid">
             <a class="nav-link {{ request()->routeIs('NHome') ?'text-warning ':'' }}" href="/">Home</a>
-            <a class="nav-link {{ request()->routeIs('NFomrulario') ?'text-warning ':'' }}" href="formulario">Formulario</a> 
-            <a class="nav-link {{ request()->routeIs('NConsulta') ?'text-warning ':'' }}" href="consulta">Consulta</a>
+            <a class="nav-link {{ request()->routeIs('formulario.create') ?'text-warning ':'' }}" href="{{ route('formulario.create') }}">Formulario</a> 
+            <a class="nav-link {{ request()->routeIs('formulario.index') ?'text-warning ':'' }}" href="{{ route('formulario.index') }}">Consulta</a>
         </div>
     </nav>
     
-    <!--Contenido de la pagina-->
     @yield('contenido')
 
     <footer> Elvia Carolina Cortes Garcia (Kaito) {{date('Y')}}</footer>

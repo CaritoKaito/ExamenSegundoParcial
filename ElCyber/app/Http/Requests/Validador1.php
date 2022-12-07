@@ -24,10 +24,10 @@ class Validador1 extends FormRequest
     public function rules()
     {
         return [
-            'Usuario'=>'required',
-            'Computadora'=>'required',
-            'Tiempo'=>'required',
-            'Fecha'=>'required'
+            'txtUsuario'=>'required',
+            'txtComputadora'=>'required',
+            'txtTiempo'=>'required',
+            'txtFecha'=>'required'
 
         ];
     }

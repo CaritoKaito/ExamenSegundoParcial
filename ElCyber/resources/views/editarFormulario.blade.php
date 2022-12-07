@@ -2,20 +2,18 @@
 @section('contenido')
 
 @if(session()->has('confirmacion'))
-    {!! "<script>Swal.fire('Listo','Tu datos se estan procesando','success')</script>" !!}
+    {!! "<script>Swal.fire('Listo','Tu registro se esta procesando','success')</script>" !!}
     <div class="alert alert-primary alert-dimissible fade show text-center" role="alert">
         <strong>{{session('confirmacion')}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div> 
 @endif
 
-<h1 class="mt-4 display-1 text-center">Formulario</h1>
+<h1 class="mt-4 display-1 text-center">Editar Registros</h1>
 <br>
 <div class="container mt-5 col-md-6">
     <div>
-        <div class="card-header text-center text-primary">
-            Bienvenido a ElCyber, por favor llena los siguientes datos: <i class="bi bi wechat"></i>
-        </div>
+    
 
     @if($errors->any())
         @foreach($errors->all() as $error)
@@ -26,36 +24,38 @@
         @endforeach
     @endif
 
-    <div>
-        <form method="post" action="{{ route('formulario.store') }}">
+    <div class="card-header text-center text-primary">
+            Correcciones de datos <i class="bi bi wechat"></i>
+        </div>
+
+    <div class="card-body">
+        <form method="post" action="{{ route('formulario.update', $formularioid->idUsuario)}}">
             @csrf 
-            <div>
+            {!! method_field('PUT')!!}
+            <div class="mb-3">
                 <label  class= "form label" name="labelUsuario">Nombre de Usuario: </label>
-                <input type="text" class="form-control" name="txtUsuario" value="{{ old('txtUsuario')}}">
+                <input type="text" class="form-control" name="txtUsuario" value="{{ $formularioid->usuario }}">
                 <p class="fw-bold text-danger">{{$errors->first('txtUsuario')}}</p>
             </div>
 
-            <div>
+            <div class="mb-3">
                 <label  class= "form label" name="labelComputadora">No. de Computadora: </label>
-                <input type="text" class="form-control" name="txtComputadora" value="{{ old('txtComputadora')}}">
+                <input type="text" class="form-control" name="txtComputadora" value="{{ $formularioid->computadora }}">
                 <p class="fw-bold text-danger">{{$errors->first('txtComputadora')}}</p>
             </div>
-
-            <div>
+            <div class="mb-3">
                 <label  class= "form label" name="labelTiempo">Tiempo de estancia aqui: </label>
-                <input type="text" class="form-control" name="txtTiempo" value="{{ old('txtTiempo')}}">
-                <p class="fw-bold text-danger">{{$errors->first('Tiempo')}}</p>
+                <input type="text" class="form-control" name="txtTiempo" value="{{ $formularioid->tiempo }}">
+                <p class="fw-bold text-danger">{{$errors->first('txtTiempo')}}</p>
             </div>
-
-            <div>
+            <div class="mb-3">
                 <label  class= "form label" name="labelFecha">Fecha: </label>
-                <input type="text" class="form-control" name="txtFecha" value="{{ old('txtFecha')}}">
+                <input type="text" class="form-control" name="txtFecha" value="{{ $formularioid->fecha }}">
                 <p class="fw-bold text-danger">{{$errors->first('txtFecha')}}</p>
             </div>
-
         </div>
         <div>
-            <button type="sumit" name="btnGuardar">Guardar</button>
+            <button type="sumit" class= "btn btn-info" name="btnActualizar">Actualizar</button>
             <form> 
         </div>
     </div>
